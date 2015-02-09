@@ -3,7 +3,8 @@ title: "R Project 2"
 output: html_document
 ---
 
-```{r}
-source()
+```{r, warning = FALSE}
+source("../01 Data/libraries.R", echo = TRUE)
+source("../01 Data/birds.R", echo = TRUE)
 ```
 
