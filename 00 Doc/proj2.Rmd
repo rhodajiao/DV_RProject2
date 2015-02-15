@@ -2,9 +2,12 @@
 title: "R Project 2: Arctic Birds of the Order Charadriiformes"
 output: html_document
 ---
+Rhoda Jiao and Maytee Chantharayukhont
 
 ```{r, warning = FALSE}
 source("../01 Data/libraries.R", echo = TRUE)
 source("../01 Data/birds.R", echo = TRUE)
+source("../02 Data Wrangling/wrangle.R", echo = TRUE)
+source("../03 Visualizations/vis.R", echo = TRUE)
 ```
 
