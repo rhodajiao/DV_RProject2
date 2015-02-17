@@ -1,16 +1,19 @@
-birds_numeric <- birds %>% mutate(Latitude=as.numeric(as.character(LATITUDE)), Longitude=as.numeric(as.character(LONGITUDE))) 
-species_loc <- birds_numeric %>% filter(Latitude >= 0 | Latitude <= 0) %>% filter(Longitude >= 0 | Longitude <= 0) %>% group_by(Genus=GENUS, Species=SPECIES) %>% summarise(Latitude=median(Latitude), Longitude=median(Longitude), Number=n()) %>% tbl_df
+print("Gets all of the birds in the genus Larus in the Southeastern hemisphere.")
+south_larus <- birds %>% select(SPECIES, GENUS, LATITUDE, LONGITUDE) %>% filter(LATITUDE<0 & LONGITUDE>0 & GENUS == 'Larus') %>% tbl_df
+print(south_larus)
+
+print("Gets all of the species of birds in the genus Sterna in both the United States and Mongolia.")
+usMonSterna <- birds %>% select(SPECIES, GENUS,COUNTRY) %>% filter(GENUS == 'Sterna' & COUNTRY %in% c('United States of America', 'Mongolia')) %>% tbl_df
+print(usMonSterna)
+
+print("Gets the median latitude and longitude of all bird species.")
+species_loc <- birds %>% filter(LATITUDE >= 0 | LATITUDE <= 0) %>% filter(LONGITUDE >= 0 | LONGITUDE <= 0) %>% group_by(Genus=GENUS, Species=SPECIES) %>% summarise(LATITUDE=median(LATITUDE), LONGITUDE=median(LONGITUDE), Number=n()) %>% tbl_df
 print(species_loc)
 
-# Gets all of the birds in the genus Larus in the Southeastern hemisphere
-birds %>% select(SPECIES, GENUS, LATITUDE, LONGITUDE) %>% filter(LATITUDE<0 & LONGITUDE>0 & GENUS == 'Larus') %>% tbl_df
-
-# Gets all of the species of birds in the genus Sterna in both the United States and Mongolia
-birds %>% select(SPECIES, GENUS,COUNTRY) %>% filter(GENUS == 'Sterna' & COUNTRY %in% c('United States of America', 'Mongolia')) %>% tbl_df
-
-# Gets latitude and longitude of all birds of the species glareola
+print("Gets latitude and longitude of all birds of the species glareola.")
 latlongGlareola <- birds %>% select(LATITUDE,LONGITUDE,SPECIES) %>% filter(SPECIES == 'glareola') %>% tbl_df
+print(latlongGlareola)
 
-# Lists the unique species of bird in each country
+print("Lists the unique species of bird in each country.")
 uniqueByCountry <- birds %>% select(COUNTRY,SPECIES) %>% distinct() %>% arrange(COUNTRY) %>% tbl_df
-
+print(uniqueByCountry)
